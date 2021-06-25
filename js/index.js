@@ -58,10 +58,10 @@ let add_days_function = function () {
 
         if (i === new Date().getDate() && date.getMonth() === new Date().getMonth() && date.getDay() === new Date().getDay()) {
 
-            day += `<div class="today">${i}</div>`;
+            day += `<div class="day_indi today">${i}</div>`;
         } else {
 
-            day += `<div>${i}</div>`;
+            day += `<div class="day_indi">${i}</div>`;
         }
     }
 
@@ -79,16 +79,22 @@ let add_days_function = function () {
 //adding event listener to each day
 let add_event_listener_day = function (x) {
     for (let i = 0; i < days_in_month_html.children.length; i++) {
+
         days_in_month_html.children[i].onclick = (e) => {
+
+
+
+            let day_store_array = [];
             let date_new = new Date();
             date_new.setMonth(x);
+
             if (e.target.classList.contains("next_date")) {
+
                 date_new.setMonth(date_new.getMonth() + 1);
                 date_new.setDate(e.target.innerHTML);
-                console.log(date_new);
-                console.log(date_new.getDate(e.target.innerHTML));
-                console.log(weekdays_name[date_new.getDay()]);
-                date_shown_html.innerText=date_new.toDateString();
+                date_shown_html.innerText = date_new.toDateString();
+
+                // if day view is selected
                 if (select_view_html.value === "d") {
                     header_day_html.innerHTML = `<div class="header_day_single">
                     <h3>
@@ -98,12 +104,38 @@ let add_event_listener_day = function (x) {
                 </div>`;
                 }
 
+                //if week view is selected
+                if (select_view_html.value === "w") {
+
+                    if (date_new.getDay() > 0) {
+
+                        for (let i = days_in_month_html.childElementCount - 7; i <= days_in_month_html.childElementCount - (6 - date_new.getDay()) - 2; i++) {
+                            day_store_array.push(days_in_month_html.children[i].innerHTML);
+                        }
+
+                    }
+
+                    for (let i = days_in_month_html.childElementCount - (6 - date_new.getDay()) - 1; i < days_in_month_html.childElementCount; i++) {
+                        day_store_array.push(days_in_month_html.children[i].innerHTML);
+                    }
+
+                    for (let x = 0; x < header_week_html.childElementCount; x++) {
+
+                        if (x % 2 == 0) {
+
+                            header_week_html.children[x].children[0].children[1].innerHTML = day_store_array[x / 2];
+
+                        }
+                    }
+                }
+
             } else if (e.target.classList.contains("prev_date")) {
+
                 date_new.setMonth(date_new.getMonth() - 1);
                 date_new.setDate(e.target.innerHTML);
-                console.log(date_new);
-                console.log(weekdays_name[date_new.getDay()]);
-                date_shown_html.innerText=date_new.toDateString();
+                date_shown_html.innerText = date_new.toDateString();
+
+                // if day view is selected
                 if (select_view_html.value === "d") {
                     header_day_html.innerHTML = `<div class="header_day_single">
                     <h3>
@@ -112,11 +144,39 @@ let add_event_listener_day = function (x) {
                     </h3>
                 </div>`;
                 }
+
+                //if week view is selected
+                if (select_view_html.value === "w") {
+
+                    if (date_new.getDay() > 0) {
+                        for (let i = 0; i < date_new.getDay(); i++) {
+
+                            day_store_array.push(days_in_month_html.children[i].innerHTML);
+                        }
+                    }
+
+                    for (let i = date_new.getDay(); i < 7; i++) {
+
+                        day_store_array.push(days_in_month_html.children[i].innerHTML);
+                    }
+
+
+                    for (let x = 0; x < header_week_html.childElementCount; x++) {
+
+                        if (x % 2 == 0) {
+
+                            header_week_html.children[x].children[0].children[1].innerHTML = day_store_array[x / 2];
+                        }
+
+                    }
+
+                }
             } else {
+                let element_index=[];
                 date_new.setDate(e.target.innerHTML);
                 console.log(date_new);
                 console.log(weekdays_name[date_new.getDay()]);
-                date_shown_html.innerText=date_new.toDateString();
+                date_shown_html.innerText = date_new.toDateString();
                 if (select_view_html.value === "d") {
                     header_day_html.innerHTML = `<div class="header_day_single">
                     <h3>
@@ -125,6 +185,42 @@ let add_event_listener_day = function (x) {
                     </h3>
                 </div>`;
                 }
+
+                for(let n =0; n<days_in_month_html.childElementCount;n++){
+                    if((days_in_month_html.children[n].innerHTML===e.target.innerHTML) && days_in_month_html.children[n].classList.contains("day_indi")){
+                        element_index.push(n);
+                        
+                    }
+                }
+                console.log(element_index[0]);
+                console.log(days_in_month_html.children);
+                //if week view is selected
+                if (select_view_html.value === "w") {
+
+                    if (date_new.getDay() > 0) {
+                        for (let i = element_index[0]-date_new.getDay(); i < element_index[0] ; i++) {
+
+                            day_store_array.push(days_in_month_html.children[i].innerHTML);
+                        }
+                    }
+
+                    for (let i = element_index[0]; i < element_index[0] + 7 - date_new.getDay(); i++) {
+                        day_store_array.push(days_in_month_html.children[i].innerHTML);
+                    }
+
+
+                    for (let x = 0; x < header_week_html.childElementCount; x++) {
+
+                        if (x % 2 == 0) {
+
+                            header_week_html.children[x].children[0].children[1].innerHTML = day_store_array[x / 2];
+                        }
+
+                    }
+                    console.log(day_store_array);
+
+                }
+
             }
 
         }
