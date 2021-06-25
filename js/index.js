@@ -1,11 +1,3 @@
-//getting html elements
-let current_month_html = document.getElementById("current_month");
-let current_date_html = document.getElementById("current_date");
-let days_in_month_html = document.querySelector(".days");
-let date_shown_html = document.querySelector(".date_shown");
-let prev = document.querySelector(".prev");
-let next = document.querySelector(".next");
-
 
 //month_name_array
 const month_name = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
@@ -227,6 +219,11 @@ let add_event_listener_day = function (x) {
     }
 }
 
+//date_shown_in_header
+let date_shown_in_header=function(){
+    date_shown_html.innerHTML=date.toDateString();
+}
+
 //adding event listeners to next and prev
 prev.addEventListener("click", () => {
     date.setMonth(date.getMonth() - 1);
@@ -242,5 +239,9 @@ next.addEventListener("click", () => {
 
 //calling function to load days first time
 add_days_function();
+
 //calling function to add event listeners
 add_event_listener_day(date.getMonth());
+
+//calling function to add initial value to date shown in header
+date_shown_in_header();

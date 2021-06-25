@@ -21,18 +21,19 @@
 </head>
 
 <body>
+
     <div class="actions">
         <div class="teacher">
-            <label for="teacher">Teacher: </label>
-            <select name="teacher" id="teacher">
-                <option value="selectteacher">Select Teacher</option>
+            <label for="teacher_actions">Teacher: </label>
+            <select name="teacher_actions" id="teacher_actions">
+                <option value="select teacher name">Select Teacher</option>
                 <option value="a">A</option>
                 <option value="b">B</option>
                 <option value="c">C</option>
             </select>
         </div>
         <div class="date_shown">
-            Jun 24 2021
+            you select from right calender
         </div>
         <div class="view">
             <label for="view">View: </label>
@@ -45,7 +46,28 @@
         </div>
     </div>
     <div class="container">
-
+        <div class="add_btn"><i class="fa fa-plus add_icon" aria-hidden="true"></i></div>
+        <div class="form_to_add">
+            <div class="teacher_name">
+                <label for="teacherName"> Teacher: </label>
+                <select name="teacherName" id="teacherName">
+                    <option value="select teacher name">select teacher name</option>
+                    <option value="a">A</option>
+                    <option value="b">B</option>
+                    <option value="c">C</option>
+                </select>
+            </div>
+            <div class="time_slot">
+                <label for="timeSlot"> Slot: </label>
+                <select name="timeSlot" id="timeSlot">
+                    <option value="select time slot">select time slot</option>
+                    <option value="10-11">10-11</option>
+                    <option value="11-12">11-12</option>
+                    <option value="12-13">12-13</option>
+                </select>
+            </div>
+            <div class="add_slot"><button type="button">Add</button></div>
+        </div>
         <div class="side_calendar">
 
             <div class="month">
@@ -71,57 +93,54 @@
             </div>
 
         </div>
-
-
-
         <div class="view_box">
             <div class="header_week">
                 <div class="header_week_day_0">
                     <h3>
                         <div class="week_day_name">Sun</div>
-                        <div class="day_date">20</div>
+                        <div class="day_date">-</div>
                     </h3>
                 </div>
                 <div class="border">&nbsp;</div>
                 <div class="header_week_day_1">
                     <h3>
                         <div class="week_day_name">Mon</div>
-                        <div class="day_date">20</div>
+                        <div class="day_date">-</div>
                     </h3>
                 </div>
                 <div class="border">&nbsp;</div>
                 <div class="header_week_day_2">
                     <h3>
                         <div class="week_day_name">Tue</div>
-                        <div class="day_date">20</div>
+                        <div class="day_date">-</div>
                     </h3>
                 </div>
                 <div class="border">&nbsp;</div>
                 <div class="header_week_day_3">
                     <h3>
                         <div class="week_day_name">Wed</div>
-                        <div class="day_date">20</div>
+                        <div class="day_date">-</div>
                     </h3>
                 </div>
                 <div class="border">&nbsp;</div>
                 <div class="header_week_day_4">
                     <h3>
                         <div class="week_day_name">Thu</div>
-                        <div class="day_date">20</div>
+                        <div class="day_date">-</div>
                     </h3>
                 </div>
                 <div class="border">&nbsp;</div>
                 <div class="header_week_day_5">
                     <h3>
                         <div class="week_day_name">Fri</div>
-                        <div class="day_date">20</div>
+                        <div class="day_date">-</div>
                     </h3>
                 </div>
                 <div class="border">&nbsp;</div>
                 <div class="header_week_day_6">
                     <h3>
                         <div class="week_day_name">Sat</div>
-                        <div class="day_date">20</div>
+                        <div class="day_date">-</div>
                     </h3>
                 </div>
             </div>
@@ -130,17 +149,21 @@
                 <div class="header_day_single">
                     <h3>
                         <div class="day_name">sun</div>
-                        <div class="day_date">20</div>
+                        <div class="day_date">-</div>
                     </h3>
                 </div>
             </div>
+            <div class="time_slot_container">
 
+            </div>
         </div>
 
     </div>
 
 
 
+    <script src="js/gettingHtmlElements.js"></script>
+    <script src="js/form.js"></script>
     <script src="js/view.js"></script>
     <script src="js/index.js"></script>
 </body></html>
